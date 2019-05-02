@@ -22,7 +22,7 @@
 ###### Paste:
 	C:\Program Files\Dev-Cpp\MinGW64\x86_64-w64-mingw32\lib
   
-## Coding template test
+## Coding setup
 ###### Open DevC - New Project - Console Graphics Application
 	C++ File
 	Project name: Hello
