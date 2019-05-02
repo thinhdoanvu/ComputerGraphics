@@ -1,4 +1,4 @@
-Cài đặt và sử dụng đồ họa trên Dev-C++
+#Cài đặt và sử dụng đồ họa trên Dev-C++
 Bước 1. Download và cài đặt Dev-C++
 Bước 2. Download 2 file “graphics.h” và “libbgi.a”
 Bước 3. Cấu hình Compiler Options: TDM-GCC 4.9.2 32bit Release
