@@ -32,14 +32,14 @@
 	 TDM-GCC 4.9.2 32bit Release
    
 ## Code:
-#######
-#include <graphics.h>
+###### Example code:
+	#include <graphics.h>
+	
+	int main()
+	{
+  		initwindow(800,800);
+  		line(100,100,400,400);
+  		getch();
+	}
 
-int main()
-{
-  initwindow(800,800);
-  line(100,100,400,400);
-  getch();
-}
-########
  
