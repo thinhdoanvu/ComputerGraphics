@@ -7,8 +7,8 @@ Bước 3. Copy flie “graphics.h” vào folder include (C:\Program Files\Dev-
 Bước 4. Tạo mới một Project
         File -> New -> Project...
         Tab Basic: 
-            Console Application
-            A console application: C
+            Console Graphics Application
+            A console application: C++
             Name: ComputerGraphics
             OK
         Save As: Documents -> ComputerGraphics.dev -> Save
