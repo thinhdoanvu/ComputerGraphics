@@ -1,0 +1,460 @@
+//khai bao thu vien
+#include <graphics.h>
+#include <math.h>
+#define ROUND(a) ((int)(a+0.5))
+
+//khai bao bien
+int xa;
+int xb;
+int ya;
+int yb;
+float m;
+
+//chuong trinh con
+
+void nhapxy()
+{
+ printf("\n************************************************************\n"); 
+ printf("*\t0<m<1 va chieu trai sang phai: 100 100 200 150     *\n");
+ printf("*\t0<m<1 va chieu phai sang trai: 200 150 100 100     *\n");
+ printf("*\tm>1 va chieu trai sang phai: 100 100 150 200       *\n");
+ printf("*\tm>1 va chieu phai sang trai: 150 200 100 100       *\n");
+ printf("*\t0<|m|<1 va chieu trai sang phai: 100 150 200 100   *\n");
+ printf("*\t0<|m|<1 va chieu phai sang trai: 200 100 100 150   *\n");
+ printf("*\t|m|>1 va chieu trai sang phai: 100 200 150 100     *\n");
+ printf("*\t|m|>1 va chieu phai sang trai: 150 100 100 200     *\n");
+ printf("************************************************************\n");
+  printf("x1:= ");
+  scanf("%d",&xa);
+  printf("y1:= ");
+  scanf("%d",&ya);
+  printf("x2:= ");
+  scanf("%d",&xb);
+  printf("y2:= ");
+  scanf("%d",&yb); 
+  m=(float) (yb-ya)/(xb-xa);
+  printf("he so goc m = %f",m);
+}
+
+
+
+int leftright(int a1, int b1)
+{
+  if(a1<b1)
+  {
+    return 1; //left to right
+  }
+  else
+  {
+    return 0; //right to left
+  }
+}
+
+void zero_2_one_left_2_right()
+{
+  int x;
+  int y;
+  float p0;
+  float p;
+  int A;
+  int B;
+  
+  initwindow(400,400);
+  putpixel(xa,ya,255); 
+
+  x=xa;
+  y=ya;
+  putpixel(x,y,125);
+  //xac dinh cac he so
+
+  A=yb-ya;
+  B=-(xb-xa);
+  p0= (float) (A+B/2);
+  p=p0;
+
+  while(x<xb)
+  {
+    if(p<0)
+    {
+      p=(float)(p+A);
+    }
+    else
+    {
+      p=(float)(p+A+B);
+      y++;
+    }
+    x=x+1;
+    putpixel(x,y,255);
+    delay(100);
+    printf("%d,%d\t",x,y);
+  }
+  //closegraph();
+}
+//0<m<1
+void zero_2_one_right_2_left()
+{
+  int x;
+  int y;
+  float p0;
+  float p;
+  int A;
+  int B;
+  
+  initwindow(400,400);
+  putpixel(xa,ya,255); 
+
+  x=xa;
+  y=ya;
+  putpixel(x,y,125);
+  //xac dinh cac he so
+
+  A=yb-ya;
+  B=-(xb-xa);
+  p0= (float) (-A-B/2);
+  p=p0;
+
+  while(x>xb)
+  {
+    if(p<=0)
+    {
+      p=(float) (p-A);
+      y--;
+    }
+    else
+    {
+      p=(float) (p-A-B);
+    }
+    x=x-1;
+    putpixel(x,y,255);
+    delay(100);
+    printf("%d,%d\t",x,y);
+  }
+  //closegraph();
+}
+
+//0<m<1
+void more_than_one_left_2_right()
+{
+  int x;
+  int y;
+  float p0;
+  float p;
+  int A;
+  int B;
+  
+  initwindow(400,400);
+  putpixel(xa,ya,255); 
+
+  x=xa;
+  y=ya;
+  putpixel(x,y,125);
+  //xac dinh cac he so
+
+  A=yb-ya;
+  B=-(xb-xa);
+  p0= (float) (B+A/2);
+  p=p0;
+
+  while(x<xb)
+  {
+    if(p<=0)
+    {
+      p=(float)(p+A+B);
+    }
+    else
+    {
+      p=(float)(p+B);
+      x++;
+    }
+    y=y+1;
+    putpixel(x,y,255);
+    delay(100);
+    printf("%d,%d\t",x,y);
+  }
+  //closegraph();
+}
+
+//0<m<1
+void more_than_one_right_2_left()
+{
+  int x;
+  int y;
+  float p0;
+  float p;
+  int A;
+  int B;
+  
+  initwindow(400,400);
+  putpixel(xa,ya,255); 
+
+  x=xa;
+  y=ya;
+  putpixel(x,y,125);
+  //xac dinh cac he so
+
+  A=yb-ya;
+  B=-(xb-xa);
+  p0= (float) (-B-A/2);
+  p=p0;
+
+  while(y>yb)
+  {
+    if(p<=0)
+    {
+      p=(float) (p-B-A);
+      x--;
+    }
+    else
+    {
+      p=(float) (p-B);
+    }
+    y=y-1;
+    putpixel(x,y,255);
+    delay(100);
+    printf("%d,%d\t",x,y);
+  }
+  //closegraph();
+}
+
+//-1<m<0
+void zero_abs_m_one_left_2_right()
+{
+  int x;
+  int y;
+  float p0;
+  float p;
+  int A;
+  int B;
+  
+  initwindow(400,400);
+  putpixel(xa,ya,255); 
+
+  x=xa;
+  y=ya;
+  putpixel(x,y,125);
+  //xac dinh cac he so
+
+  A=yb-ya;
+  B=-(xb-xa);
+  p0= (float) (A-B/2);
+  p=p0;
+
+  while(x<xb)
+  {
+    if(p<=0)
+    {
+      p=(float) (p+A-B);
+      y--;
+    }
+    else
+    {
+      p=(float) (p+A);
+    }
+    x=x+1;
+    putpixel(x,y,255);
+    delay(100);
+    printf("%d,%d\t",x,y);
+  }
+  //closegraph();
+}
+
+//-1<m<0
+void zero_abs_m_one_right_2_left()
+{
+  int x;
+  int y;
+  float p0;
+  float p;
+  int A;
+  int B;
+  
+  initwindow(400,400);
+  putpixel(xa,ya,255); 
+
+  x=xa;
+  y=ya;
+  putpixel(x,y,125);
+  //xac dinh cac he so
+
+  A=yb-ya;
+  B=-(xb-xa);
+  p0= (float) (-A+B/2);
+  p=p0;
+
+  while(x>xb)
+  {
+    if(p<=0)
+    {
+      p=(float) (p-A+B);
+    }
+    else
+    {
+      p=(float) (p-A);
+      y++;
+    }
+    x=x-1;
+    putpixel(x,y,255);
+    delay(100);
+    printf("%d,%d\t",x,y);
+  }
+  //closegraph();
+}
+//m<-1
+void abs_m_more_than_one_left_2_right()
+{
+  int x;
+  int y;
+  float p0;
+  float p;
+  int A;
+  int B;
+  
+  initwindow(400,400);
+  putpixel(xa,ya,255); 
+
+  x=xa;
+  y=ya;
+  putpixel(x,y,125);
+  //xac dinh cac he so
+
+  A=yb-ya;
+  B=-(xb-xa);
+  p0= (float) (B-A/2);
+  p=p0;
+
+  while(y>yb)
+  {
+    if(p<=0)
+    {
+      p=(float) (p+B-A);
+      x++;
+    }
+    else
+    {
+      p=(float) (p+B);
+    }
+    y--;
+    putpixel(x,y,255);
+    delay(100);
+    printf("%d,%d\t",x,y);
+  }
+  //closegraph();
+}
+//m<-1
+void abs_m_more_than_one_right_2_left()
+{
+  int x;
+  int y;
+  float p0;
+  float p;
+  int A;
+  int B;
+  
+  initwindow(400,400);
+  putpixel(xa,ya,255); 
+
+  x=xa;
+  y=ya;
+  putpixel(x,y,125);
+  //xac dinh cac he so
+
+  A=yb-ya;
+  B=-(xb-xa);
+  p0= (float) (-B+A/2);
+  p=p0;
+
+  while(y<yb)
+  {
+    if(p<=0)
+    {
+      p=(float) (p-B+A);
+    }
+    else
+    {
+      p=(float) (p-B);
+      x--;
+    }
+    y=y+1;
+    putpixel(x,y,255);
+    delay(100);
+    printf("%d,%d\t",x,y);
+  }
+  //closegraph();
+}
+
+void checking()
+{
+  //0<m<1
+  if(m>=0 && m<=1)
+  {
+    printf("\nDuong thang can ve co he so goc 0<=m<=1");
+    if(leftright(xa,xb)==1)
+    {
+      printf("va co chieu tu trai sang phai \n");
+      zero_2_one_left_2_right();
+    }
+    else
+    {
+      printf("va co chieu tu phai sang trai \n");
+      zero_2_one_right_2_left();
+    }
+  }
+
+  // m>1
+  if(m>1)
+  {
+    printf("\nDuong thang can ve co he so goc m>1");
+    if(leftright(xa,xb)==1)
+    {
+      printf(" va co chieu tu trai sang phai \n");
+      more_than_one_left_2_right();
+    }
+    else
+    {
+      printf(" va co chieu tu phai sang trai \n");
+      more_than_one_right_2_left();
+    }
+  }
+
+  //-1<m<0
+  if(m>=-1 && m<=0)
+  {
+    printf("\nDuong thang can ve co he so goc 0<=|m|<=1");
+    if(leftright(xa,xb)==1)
+    {
+      printf("va co chieu tu trai sang phai \n");
+      zero_abs_m_one_left_2_right();
+    }
+    else
+    {
+      printf("va co chieu tu phai sang trai \n");
+      zero_abs_m_one_right_2_left();
+    }
+  }
+ 
+ //m<-1
+  if(m<-1)
+  {
+    printf("\nDuong thang can ve co he so goc |m|>1");
+    if(leftright(xa,xb)==1)
+    {
+      printf(" va co chieu tu trai sang phai \n");
+      abs_m_more_than_one_left_2_right();
+    }
+    else
+    {
+      printf(" va co chieu tu phai sang trai \n");
+      abs_m_more_than_one_right_2_left();
+    }
+  }
+ 
+}
+
+//chuong trinh chinh
+main()
+{ //khoi tao window
+  nhapxy();
+  checking();
+  //closegraph();
+  getch();
+}
