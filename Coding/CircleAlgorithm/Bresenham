@@ -1,0 +1,68 @@
+//khai bao thu vien
+#include <graphics.h>
+
+//khai bao bien
+int xc;
+int yc;
+int x;
+int y;
+int r;
+int d;
+
+//chuong trinh con
+
+void nhapxy()
+{
+  printf("Nhap tam duong tron, xc= ");
+  scanf("%d",&xc);
+  printf("Nhap tam duong tron, yc= ");
+  scanf("%d",&yc);
+  printf("Nhap ban kinh duong tron, r= ");
+  scanf("%d",&r);
+}
+
+void drawcircle()
+{
+  putpixel(xc+x,yc+y,255);
+  putpixel(xc-x,yc+y,255);
+  putpixel(xc+x,yc-y,255);
+  putpixel(xc-x,yc-y,255);
+  putpixel(xc+y,yc+x,255);
+  putpixel(xc-y,yc+x,255);
+  putpixel(xc+y,yc-x,255);
+  putpixel(xc-y,yc-x,255);
+}
+
+void Bresenham()
+{
+  initwindow(400,400);
+  x=0;
+  y=r;
+  d=3-2*r;
+  while(x<y)
+  {
+    drawcircle();
+    if(d<=0)
+    { 
+      d=d+4*x+6;
+    }
+    else
+    {
+      y--;
+      d=d+4*x-4*y+10;
+    }
+    drawcircle();
+    x++;
+    printf("%d,%d\t",x,y);
+  }
+}
+
+
+//chuong trinh chinh
+main()
+{ //khoi tao window
+  nhapxy();
+  Bresenham();
+  //closegraph();
+  getch();
+}
