@@ -1,0 +1,68 @@
+//khai bao thu vien
+#include <graphics.h>
+#define ROUND(a) ((int)(a+0.5))
+//khai bao bien
+int xc;
+int yc;
+int x;
+int y;
+int r;
+int p;
+
+//chuong trinh con
+
+void nhapxy()
+{
+  printf("Nhap tam duong tron, xc= ");
+  scanf("%d",&xc);
+  printf("Nhap tam duong tron, yc= ");
+  scanf("%d",&yc);
+  printf("Nhap ban kinh duong tron, r= ");
+  scanf("%d",&r);
+}
+
+void drawcircle()
+{
+  putpixel(xc+x,yc+y,255);
+  putpixel(xc-x,yc+y,255);
+  putpixel(xc+x,yc-y,255);
+  putpixel(xc-x,yc-y,255);
+  putpixel(xc+y,yc+x,255);
+  putpixel(xc-y,yc+x,255);
+  putpixel(xc+y,yc-x,255);
+  putpixel(xc-y,yc-x,255);
+}
+
+void Midpoint()
+{
+  initwindow(400,400);
+  x=0;
+  y=r;
+  p=ROUND(5/4-r); 
+  while(x<y)
+  {
+    drawcircle();
+    if(p<=0)
+    { 
+      p=p+2*x+3;
+    }
+    else
+    {
+      y--;
+      p=p+2*x-2*y+5;
+    }
+    drawcircle();
+    x++;
+    printf("%d,%d\t",x,y);
+  }
+}
+
+
+//chuong trinh chinh
+main()
+{ //khoi tao window
+  nhapxy();
+  Midpoint();
+  //closegraph();
+  getch();
+}
