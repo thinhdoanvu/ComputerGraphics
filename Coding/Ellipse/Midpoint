@@ -1,0 +1,93 @@
+//khai bao thu vien
+#include <graphics.h>
+#define ROUND(a) ((int)(a+0.5))
+//khai bao bien
+int xc;
+int yc;
+int rx;
+int ry;
+int x;
+int y;
+
+//chuong trinh con
+
+void nhapxy()
+{
+  printf("Nhap tam ellipse, xc= ");
+  scanf("%d",&xc);
+  printf("Nhap tam ellipse, yc= ");
+  scanf("%d",&yc);
+  printf("Nhap ban kinh truc ngang, rx= ");
+  scanf("%d",&rx);
+  printf("Nhap ban kinh truc doc, ry= ");
+  scanf("%d",&ry);
+}
+
+void drawellipse()
+{
+  putpixel(xc+x,yc+y,255);
+  putpixel(xc-x,yc+y,255);
+  putpixel(xc+x,yc-y,255);
+  putpixel(xc-x,yc-y,255);
+}
+
+void Ellipse()
+{
+  int p1;
+  int px;
+  int py;
+  int p2;
+
+  initwindow(400,400);
+  x=0;
+  y=ry;
+  p1=ROUND(ry*ry-rx*rx*ry+rx*rx/4); 
+  px=0;
+  py=2*rx*rx*y;
+  drawellipse();
+
+  while(px<py)
+  {
+    x++;
+    px=px+2*ry*ry;
+    
+    if(p1<=0)
+    { 
+      p1=p1+ry*ry+px;
+    }
+    else
+    {
+      y--;
+      py=py-2*rx*rx;
+      p1=p1+ry*ry+px-py;
+    }
+    drawellipse();
+  }
+  //Region 2
+  p2=ROUND(ry*ry*(x+0.5)*(x+0.5)+rx*rx*(y-1)*(y-1)-rx*rx*ry*ry);
+  while (y>0)
+  {
+    y--;
+    py=py-2*rx*rx;
+    if (p2>0) 
+    {
+      p2=p2+rx*rx - py;
+    }
+    else
+    {
+      x++;
+      px = px+2*ry*ry;
+      p2= p2+rx*rx - py + px;
+    }
+    drawellipse();
+  }
+}
+
+//chuong trinh chinh
+main()
+{ //khoi tao window
+  nhapxy();
+  Ellipse();
+  //closegraph();
+  getch();
+}
