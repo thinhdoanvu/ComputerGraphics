@@ -1,0 +1,80 @@
+#include <graphics.h>
+#include <math.h>
+
+//khai bao bien
+int n;
+int xc[100];
+int yc[100];
+int xs;
+int ys;
+int degree;
+float scalex;
+float scaley;
+
+//chuong trinh con
+void draw_object()
+{
+  int i;
+
+  for(i=0;i<n;i++)
+  {
+    line(xc[i],yc[i],xc[(i+1)%n],yc[(i+1)%n]);
+    delay(1000);
+  }
+}
+
+//nhap thong so
+void nhapdulieu()
+{
+  int i;
+
+  printf("Nhap so canh cua da giac = ");
+  scanf("%d",&n);
+  
+  for (i=0;i<n;i++)
+  {
+    printf("Toa do x cho canh %d = ",i);
+    scanf("%d",&xc[i]);
+    printf("Toa do y cho canh %d = ",i);
+    scanf("%d",&yc[i]);
+  }
+  printf("Ty le bien dang theo truc x= ");
+  scanf("%f",&scalex);
+  printf("Ty le bien dang theo truc y= ");
+  scanf("%f",&scaley);
+  printf("Toa do moi cua doi tuong tren truc x = ");
+  scanf("%d",&xs);
+  printf("Toa do moi cua doi tuong tren truc y = ");
+  scanf("%d",&ys);
+}
+
+//bien doi ty le
+void scaling()
+{
+  int i;
+  int dx;
+  int dy;
+ 
+  for(i=0;i<n;i++)
+  {
+    //chon tam cua doi tuong la diem x0,y0
+    xc[i]=xs+(int)((float)(xc[i]-xs)*scalex);
+    yc[i]=ys+(int)((float)(yc[i]-ys)*scaley);
+    printf("%d,%d\n",xc[i],yc[i]);
+  }
+}
+
+//chuong trinh chinh
+int main()
+{
+ nhapdulieu();
+ initwindow(800,800);
+ draw_object();
+ delay(1000);
+
+ scaling();
+ draw_object();
+
+	getch();
+ return 0; 
+}
