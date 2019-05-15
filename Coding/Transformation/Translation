@@ -1,0 +1,68 @@
+#include <graphics.h>
+
+//khai bao bien
+int xshift;
+int yshift;
+int n;
+int xc[100];
+int yc[100];
+
+//chuong trinh con
+void draw_object()
+{
+  int i;
+
+  for(i=0;i<n;i++)
+  {
+    line(xc[i],yc[i],xc[(i+1)%n],yc[(i+1)%n]);
+    delay(1000);
+  }
+}
+
+//nhap thong so
+void nhapdulieu()
+{
+  int i;
+
+  printf("Nhap so canh cua da giac = ");
+  scanf("%d",&n);
+  
+  for (i=0;i<n;i++)
+  {
+    printf("Toa do x cho canh %d = ",i);
+    scanf("%d",&xc[i]);
+    printf("Toa do y cho canh %d = ",i);
+    scanf("%d",&yc[i]);
+  }
+  printf("Khoang cach dich chuyen theo truc x = ");
+  scanf("%d",&xshift);
+  printf("Khoang cach dich chuyen theo truc y = ");
+  scanf("%d",&yshift);
+}
+
+//dich chuyen doi tuong
+void translate()
+{
+  int i;
+
+  for(i=0;i<n;i++)
+  {
+    xc[i]=xc[i]+xshift;
+    yc[i]=yc[i]+yshift;
+  }
+}
+
+//chuong trinh chinh
+int main()
+{
+ nhapdulieu();
+ initwindow(800,800);
+  
+ draw_object();
+ delay(1000);
+ translate();
+ draw_object();
+
+	getch();
+ return 0; 
+}
