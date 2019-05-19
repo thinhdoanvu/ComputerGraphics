@@ -1,0 +1,215 @@
+#include <graphics.h>
+#include <math.h>
+#define ROUND(a) ((int)(a+0.5))
+
+//khai bao hang so
+//bang ma code ABRL
+const int INSIDE = 0; //0000
+const int ABOVE = 8; //1000
+const int BOTTOM = 4; //0100
+const int RIGHT = 2; //0010
+const int LEFT = 1; //0001
+
+
+//khai bao bien
+int n;
+int xa;
+int ya;
+int xb;
+int yb;
+int xwmin;
+int xwmax;
+int ywmin;
+int ywmax;
+
+int code0;
+int code1;
+
+int X;
+int Y;
+
+//chuong trinh con
+void draw_object(int xaa, int yaa, int xbb, int ybb)
+{
+  line(xaa,yaa,xbb,ybb);
+}
+
+void draw_window()
+{
+  setlinestyle(1,0,1);
+  setcolor(GREEN);
+  line(xwmin,ywmin,xwmin,ywmax);
+  line(xwmin,ywmax,xwmax,ywmax);
+  line(xwmax,ywmax,xwmax,ywmin);
+  line(xwmax,ywmin,xwmin,ywmin);
+}
+
+//nhap thong so
+void nhapdulieu()
+{
+  int i;
+
+  printf("Nhap thong tin cua so clipping\n");
+  printf("xwmin= ");
+  scanf("%d",&xwmin);
+  printf("ywmin= ");
+  scanf("%d",&ywmin);
+  printf("xwmax= ");
+  scanf("%d",&xwmax);
+  printf("ywmax= ");
+  scanf("%d",&ywmax);
+
+  printf("Nhap toa do x cua diem thu 1= ");
+  scanf("%d",&xa);
+  printf("Nhap toa do y cua diem thu 1= ");
+  scanf("%d",&ya);
+  printf("Nhap toa do x cua diem thu 2= ");
+  scanf("%d",&xb);
+  printf("Nhap toa do y cua diem thu 2= ");
+  scanf("%d",&yb);
+}
+
+//ma hoa 2 diem cua doan thang
+int coding(int a, int b)
+{
+  int code = INSIDE;
+
+  if(a<xwmin)
+  {
+    //left
+    code = LEFT;
+  }
+  else
+  { 
+    if(a>xwmax)
+    {
+      //right
+      code = RIGHT;
+    }
+    else
+    {
+      if(b<ywmin)
+      {
+        //bottom
+        code=ABOVE;
+      }
+      else 
+      {
+        if(b>ywmax)
+        {
+          code = BOTTOM;
+        }
+      }
+    }
+  } 
+  
+  return code;
+}
+
+//timm giao diem
+void timgiaodiemXY(int codeXY)
+{
+
+  if(codeXY==8) //ABOVE
+  {
+    Y=ywmin;
+    X=xa+(xb-xa)*(Y-ya)/(yb-ya);
+  }
+  if(codeXY==4)//BOTTOM
+  {
+    Y=ywmax;
+    X=xa+(xb-xa)*(Y-ya)/(yb-ya);
+  }
+  if(codeXY==2)//RIGHT
+  {
+    X=xwmax;
+    Y=ya+(yb-ya)*(X-xa)/(xb-xa);
+  }
+  if(codeXY==1)//LEFT
+  {
+    X=xwmin;
+    Y=ya+(yb-ya)*(X-xa)/(xb-xa);
+  }
+}
+
+void cohen_sutherland()
+{
+
+  if((code0==0) && (code1==0))
+  {
+    printf("\nDoan thang da cho nam trong cua so cat tia. STOP\n");
+  }
+  else
+  {
+    if(((code0) & (code1))!=0)
+    {
+      printf("\nDoan thang da cho nam ngoai cua so cat tia. STOP\n");
+    }
+    else 
+    {
+      if((code0==0) && (code1)!=0) //tu trong ra ngoai
+      {
+        //xac dinh toa do P1' phu thuoc code0
+        timgiaodiemXY(code1);
+
+        //ve duong thang noi P2 den P2'
+        setcolor(BLUE);
+        line(xa,ya,X,Y);
+      }
+      else
+      {
+        if((code0!=0) && (code1)==0) //tu ngoai vao trong
+        {
+          //xac dinh toa do P1'
+          timgiaodiemXY(code0);
+          //ve duong thang noi P1' den P2
+          setcolor(BLUE);
+          line(X,Y,xb,yb);
+        }
+        else //tu ngoai ra ngoai
+        {
+           //xac dinh diem P1' va P2'
+           int X01;
+           int Y01;
+           int X11;
+           int Y11;
+           //xac dinh toa do P1'
+           timgiaodiemXY(code0);
+           X01=X;
+           Y01=Y;
+           //xac dinh toa do P2'
+           timgiaodiemXY(code1);
+           X11=X;
+           Y11=Y;
+           setcolor(BLUE);
+           line(X01,Y01,X11,Y11);
+           printf("%d,%d,%d,%d",X01,Y01,X11,Y11);
+        }
+      }
+    }
+  }  
+}
+
+//chuong trinh chinh
+int main()
+{
+  nhapdulieu();
+  initwindow(800,800);
+  setcolor(RED);
+  draw_object(xa,ya,xb,yb);
+  delay(500);
+  draw_window();
+
+  //gan ma hoa cho cac diem
+  code0=coding(xa,ya);
+  code1=coding(xb,yb); 
+  printf("Bang ma hoa cua 2 diem P1 va P2 la: %d\t%d",code0,code1);
+  printf("\ncode0 AND code1 = %d",code0&code1);
+
+  cohen_sutherland();
+
+	//getch();
+ return 0; 
+}
+
+
