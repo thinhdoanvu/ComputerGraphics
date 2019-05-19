@@ -1,0 +1,209 @@
+#include <graphics.h>
+#include <math.h>
+#define ROUND(a) ((int)(a+0.5))
+
+//khai bao bien
+int n;
+int xa;
+int ya;
+int xb;
+int yb;
+int xwmin;
+int xwmax;
+int ywmin;
+int ywmax;
+
+float p[4];
+float q[4];
+
+ int deltax;
+ int deltay;
+
+float t1;
+float t2;
+
+int Xa;
+int Ya;
+int Xb;
+int Yb;
+
+//chuong trinh con
+void draw_object(int xaa, int yaa, int xbb, int ybb)
+{
+  line(xaa,yaa,xbb,ybb);
+}
+
+void draw_window()
+{
+  setlinestyle(1,0,1);
+  setcolor(GREEN);
+  line(xwmin,ywmin,xwmin,ywmax);
+  line(xwmin,ywmax,xwmax,ywmax);
+  line(xwmax,ywmax,xwmax,ywmin);
+  line(xwmax,ywmin,xwmin,ywmin);
+}
+
+//nhap thong so
+void nhapdulieu()
+{
+  int i;
+
+  printf("Nhap thong tin cua so clipping\n");
+  printf("xwmin= ");
+  scanf("%d",&xwmin);
+  printf("ywmin= ");
+  scanf("%d",&ywmin);
+  printf("xwmax= ");
+  scanf("%d",&xwmax);
+  printf("ywmax= ");
+  scanf("%d",&ywmax);
+
+  printf("Nhap toa do x cua diem thu 1= ");
+  scanf("%d",&xa);
+  printf("Nhap toa do y cua diem thu 1= ");
+  scanf("%d",&ya);
+  printf("Nhap toa do x cua diem thu 2= ");
+  scanf("%d",&xb);
+  printf("Nhap toa do y cua diem thu 2= ");
+  scanf("%d",&yb);
+}
+
+float max(float a, float b)
+{
+  float MAX;
+
+  if(a<b)
+  {
+    MAX=b;
+  }
+  else
+  {
+    MAX=a;
+  }
+  return MAX;
+}
+
+float min(float a, float b)
+{
+  float MIN;
+
+  if(a<b)
+  {
+    MIN=a;
+  }
+  else
+  {
+    MIN=b;
+  }
+  return MIN;
+}
+
+
+void khoitao()
+{
+  int i;
+
+  deltax=(xb-xa);
+  deltay=(yb-ya);
+  for(i=0;i<3;i++)
+  {
+    p[i]=0;
+    q[i]=0;
+  }
+  p[0]=-deltax;
+  p[1]=deltax;
+  p[2]=-deltay;
+  p[3]=deltay;
+  q[0]=xa-xwmin;
+  q[1]=xwmax-xa;
+  q[2]=ya-ywmin;
+  q[3]=ywmax-ya;
+  
+  t1=0;
+  t2=1;
+  for(i=0;i<4;i++)
+  {
+    if(p[i]<0)
+    {
+      t1=max(t1,q[i]/p[i]);
+    }
+    else //p[i]>0
+    {
+      t2=min(t2,q[i]/p[i]);
+    }
+  }
+  printf("\nDanh sach p, q va t");
+  printf("\n%.2f,%.2f,%.2f,%.2f",p[0],p[1],p[2],p[3]);
+  printf("\n%.2f,%.2f,%.2f,%.2f",q[0],q[1],q[2],q[3]);
+  printf("\nt1=%.2f,t2=%.2f",t1,t2);
+}
+
+void Liang_Basky()
+{
+  if((t1<0)&&(t2>=1))
+  {
+    printf("Doan thang nam ngoai cua so cat. STOP!");
+  }
+  else
+  {
+    if((t1==0) && (t2==1))
+    {
+      printf("Doan thang nam trong cua so cat. STOP!");
+    }
+    else
+    {
+      //xem xet t1,t2
+      if((t1>=0) && (t2<1))
+      {
+        Xa=ROUND((float) xa+t1*deltax);
+        Ya=ROUND((float) ya+t1*deltay);
+        Xb=ROUND((float) xa+t2*deltax);
+        Yb=ROUND((float) ya+t2*deltay);
+      }
+      else
+      {
+        if((t1>0) && (t2>=1))
+        {
+          Xa=ROUND((float) xa+t1*deltax);
+          Ya=ROUND((float) ya+t1*deltay);
+          Xb=xb;
+          Yb=yb;
+        }
+        else
+        {
+          if((t1<0) && (t2<1))
+          {
+            Xa=xa;
+            Ya=ya;
+            Xb=ROUND((float) xa+t2*deltax);
+            Yb=ROUND((float) ya+t2*deltay);
+          }
+        }
+      }
+    }
+  }
+}
+
+//chuong trinh chinh
+int main()
+{
+  nhapdulieu();
+  initwindow(800,800);
+  setcolor(RED);
+  draw_object(xa,ya,xb,yb);
+  delay(500);
+  draw_window();
+  
+  khoitao();
+
+  Liang_Basky();
+  setcolor(BLUE);
+  setlinestyle(1,0,1);
+  draw_object(Xa,Ya,Xb,Yb);
+
+ getch();
+ return 0; 
+}
+
+
+
