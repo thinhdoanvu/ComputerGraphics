@@ -3,7 +3,7 @@ Hướng dẫn cài đặt thư viện glut sử dụng Open GL cho lập trình
 
 Bước 1. Tải về và cài đặt DevC++ phiên bản 5.4.1 MinGW 4.7.2.
 Chú ý: Mặc dù mình đã cài thử nhiều phiên bản khác nhau như 4.9.2 beta hay 5.11 đều không thành công
-Link: 
+Link: https://github.com/thinhdoanvu/ComputerGraphics/blob/master/OpenGL/Dev-Cpp%205.4.1%20MinGW%204.7.2%20Setup.exe
 
 #Step 1. Download and Install DecC++ version 5..4.1 MinWG 4.7.2. I tried many version such as 4.9.2 beta, 5.11 but it did not run correctly
 Link:
