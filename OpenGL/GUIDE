@@ -12,7 +12,7 @@ Bước 2. Tải về thư viện GLUTMingw32 và giải nén
 Link:
 
 #Step 2. Download and Extract GLUTMingw32.zip
-Link:
+Link:https://github.com/thinhdoanvu/ComputerGraphics/blob/master/OpenGL/GLUTMingw32.zip
 
 Bước 3. Sau khi hoàn tất Bước 1 và 2, tiếp theo sao chép các tập tin sau vào các thư mục như hướng dẫn
 *3.1. Sao chép tập tin: glut.h trong thư mục GLUTMingw32\include\GL\ đến đường dẫn cài đặt DevC++ 5.4.1 như sau: C:\Program Files (x86)\Dev-Cpp\MinGW32\include
@@ -120,4 +120,3 @@ Bước 5. Thiết lập cấu hình cho Project
 #Step 7. Compile and Execute
 ##7.1. Click Execute - Click Compile (F9)
 ##7.2. Click Execute - Click RUN (F10)
- 
