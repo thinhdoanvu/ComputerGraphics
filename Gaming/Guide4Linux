@@ -1,0 +1,32 @@
+Setup gcc, g++, gpp, codeblocks
+#sudo apt-get install gcc g++ gpp codeblocks
+
+Setup SFML library
+#sudo apt-get install libsfml-dev
+
+Configuration Codebloks
+#Open CodeBlocks
+#Settings - Compiler - Linker Settings - 
+        Add: (type all these line)
+            sfml-graphics
+        OK
+        Add: (type all these line)
+            sfml-window
+        OK
+        Add: (type all these line)
+            sfml-system
+        OK
+#Settings - Compiler - Search Directories- Compier
+            Add: (path to directory SFML library)
+                /usr/include/SFML
+            OK
+#Settings - Compiler - Search Directories- Linker
+            Add: (path to directory lib)
+                /usr/lib
+            OK
+OK
+
+
+#Create new Project - Console Application - C++
+save your project to any where with your programe's name 
+
