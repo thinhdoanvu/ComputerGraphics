@@ -3,9 +3,10 @@
 #include<stdlib.h>
 #include<math.h>
 #define maxdinh 20
-#define FILENAME "chopnhon.inp"
-#define MTK "chopnhon.mtk"
-#define MTBD "chopnhon.mtbd"
+//#define FILENAME "chopnhon.inp"
+//#define MTK "chopnhon.mtk"
+#define FILENAME "chopcut.inp"
+#define MTK "chopcut.mtk"
 
 //khai bao bien
 int X[maxdinh];
