@@ -1,0 +1,55 @@
+#include<graphics.h>
+
+void circle(int xc, int yc, int x, int y, int color){
+	putpixel(xc+x, yc+y,color);
+	putpixel(xc-x, yc+y,color);
+	putpixel(xc+x, yc-y,color);
+	putpixel(xc-x, yc-y,color);
+	putpixel(xc+y, yc+x,color);
+	putpixel(xc+y, yc-x,color);
+	putpixel(xc-y, yc+x,color);
+	putpixel(xc-y, yc-x,color);
+}
+
+void Bre(int xc, int yc, int r){
+	int x=0;
+	int y=r;
+	int d=3-2*r;
+	while(x<y){
+		circle(xc,yc,x,y,4);
+		if(d<0){
+			d=d+4*x+6;
+		}
+		else{
+			d=d+4*x-4*y+10;
+			y--;
+		}
+		x++;
+	}
+	
+}
+
+
+void Midpoint(int xc, int yc, int r){
+	int x=0;
+	int y=r;
+	float p = (5/4-r);
+	while(x<y){
+		circle(xc, yc, x, y,3);
+		if(p<0){
+			p=p+2*x+3;
+		}
+		else{
+			p=p+2*x-2*y+5;
+			y--;
+		}
+		x++;
+	}
+}
+
+int main(){
+	initwindow(300,300);
+	Bre(100,100,50);
+	Midpoint(150,100,50);
+	getch();
+}
