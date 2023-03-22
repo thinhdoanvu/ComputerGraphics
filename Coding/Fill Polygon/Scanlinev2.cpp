@@ -92,7 +92,7 @@ void scanline(){
 		int dem=0;//luu giu so giao diem cua moi y so voi cac canh cua da giac
 		//moi lan tang dong quet thi dem se lai ve 0 hay so giao diem = 0
 		for(int i=0; i<n; i++){//xet tung canh cua da giac
-			if((y < td[i][1] && y < td[i+1][1])||(y > td[i][1] && y > td[i+1][1])){//dong quet nam duoi hoac tren ca 2 tung do dinh
+			if((y < td[i][1] && y <= td[i+1][1])||(y >= td[i][1] && y > td[i+1][1])){//dong quet nam duoi hoac tren ca 2 tung do dinh
 				printf("\nKhong co giao diem y = %d voi canh (%d,%d) - (%d,%d)",y,td[i][0],td[i][1],td[i+1][0],td[i+1][1]);
 			}
 			else{
