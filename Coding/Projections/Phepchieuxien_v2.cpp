@@ -1,115 +1,102 @@
-#include<graphics.h>
-#include<stdio.h>
-#include<math.h>
-#define maxdinh 10
+#include<graphics.h>//ve hinh
+#include<stdio.h>//printf ...
+#include<math.h>//sin cos round
+#define maxdinh 20//toi da la 20 dinh
+#define toado "chopcut_v2.inp"
+#define matranke "chopcut_v2.mtk"
 
-//#define toado "chopnhon.inp"
-//#define matranke "chopnhon.mtk"
-#define toado "chopcut.inp"
-#define matranke "chopcut.mtk"
 //khai bao bien
-int n; //so dinh cua da giac
-int dinh[maxdinh][maxdinh];//ma tran toa do cac dinh cua da giac
-int mtk[maxdinh][maxdinh];//ma tran ke cac dinh cua da giac
+int n;//so dinh cua hinh chop
+int dinh[maxdinh][maxdinh];//toa do cac dinh
+int mtk[maxdinh][maxdinh];//danh sach ma tran ke
+FILE *fp;//con tro tap tin
 
-FILE *fp;
-
-void inmatran(int c[][maxdinh], int m, int n){
-	for(int i=0; i<m;i++){
-		for(int j=0; j<n; j++){
-			printf("%5d",c[i][j]);
+//ham in ra ma tran
+void inmatran(int a[][maxdinh], int hang, int cot){
+	for(int i=0;i<hang;i++){
+		for(int j=0; j<cot; j++){
+			printf("%5d",a[i][j]);
 		}
-		printf("\n");
+		printf("\n");//het so cot thi xuong hang
 	}
+	printf("\n");
 }
-
+//doc toa do cac dinh cua hinh chop
 void readfile(){
-	fp=fopen(toado,"r");//doc file toa do dinh
-	if(fp==NULL){
-		printf("File not found");
-	}
-	else{
-		fscanf(fp,"%d",&n);//so dinh
-		for(int i=0; i<n; i++){//cac dinh
-			for(int j=0; j<3;j++){//x, y, z
-				fscanf(fp,"%d",&dinh[i][j]);
-			}
+	//doc file toa do
+	fp=fopen(toado,"r");
+	if(fp==NULL) printf("File not found");
+	//doc so dinh: dong 1 cua tap tin
+	fscanf(fp,"%d",&n);//1 lan fscanf thi doc duoc 1 gia tri
+	for(int i=0; i<n; i++){//so hang: 5
+		for(int j=0; j<3; j++){//so cot: 3
+			fscanf(fp,"%d",&dinh[i][j]);//5*3=15 ham fscanf
 		}
 	}
-	//DOC NOI DUNG TAP TIN MA TRAN KE
-	fp=fopen(matranke,"r");//doc file toa do dinh
-	if(fp==NULL){
-		printf("File not found");
-	}
-	else{
-		fscanf(fp,"%d",&n);//so dinh
-		for(int i=0; i<n; i++){//cac dinh
-			for(int j=0; j<n;j++){//cac dinh
-				fscanf(fp,"%d",&mtk[i][j]);
-			}
-		}
-	}
-	fclose(fp);//dong file ma tran ke
-	//in toa do cac dinh
-	printf("\nToa do cac dinh cua chop nhon: \n");
+	//in ra toa do cac dinh cua da giac
 	inmatran(dinh,n,3);
-	//in ma tran ke
-	printf("\nma tran ke cac dinh cua chop nhon: \n");
+	fclose(fp);//dong tap tin toa do dinh
+	
+	//doc file ma tran ke
+	fp=fopen(matranke,"r");
+	if(fp==NULL) printf("File not found");
+	//doc so dinh: dong 1 cua tap tin
+	fscanf(fp,"%d",&n);//1 lan fscanf thi doc duoc 1 gia tri
+	for(int i=0; i<n; i++){//so hang: 5
+		for(int j=0; j<n; j++){//so cot: 5
+			fscanf(fp,"%d",&mtk[i][j]);//5*5=25 ham fscanf
+		}
+	}
+	//in ra toa do cac dinh cua da giac
 	inmatran(mtk,n,n);
+	fclose(fp);//dong tap tin toa do dinh
 }
 
-void chieuxien(float L, int phi){//phi:goc chieu, L: khoang cach diem chieu - MP
-//xi'= x+zLcos(phi)
-//yi'=y+zLsin(phi)
-	float T[3][3] = {{1,0,0},{0,1,0},{L*cos(phi*3.1416/180),L*sin(phi*3.1416/180),0}};
-	printf("\nMa tran bien doi T: \n");
+void chieuxien(float L, int theta){
+	printf("\n");
+	float T[3][3] = {{1,0,0},{0,1,0,},{L*cos(theta*3.1416/180),L*sin(theta*3.1416/180),0}};
 	for(int i=0; i<3; i++){
-		for(int j=0; j<3;j++){
+		for(int j=0; j<3; j++){
 			printf("%.2f  ",T[i][j]);
-		}
+		}		
 		printf("\n");
 	}
-	//Tim ma tran ket qua = dinh[n][3]*T[3][3]
-	float Pnew[n][3];
-	//khoi tao ma tran Pnew = 0 vi cong thuc nhan ma tran co cong don cac phan tu
+	//khoi tao ma tran ket qua
+	int Pnew[maxdinh][maxdinh];
 	for(int i=0; i<n; i++){
 		for(int j=0; j<3; j++){
 			Pnew[i][j]=0;
 		}
 	}
-	//nhan 2 ma tran T[3][3]*dinh[n][3]
-	for(int i=0; i<n; i++){//so hang cua ma tran dinh[n][3]
-		for(int j=0; j<3; j++){//so cot cua ma tran dinh[n][3]
-			for(int k=0; k<3; k++){//so cot cua ma tran T[3][3]
-				Pnew[i][j] += float(dinh[i][k]*T[k][j]);
+	//nhan 2 ma tran dinh[n][3] * T[3][3]
+	for(int i=0; i<n; i++){//so hang cua ma tran dinh[][]
+		for(int j=0; j<3; j++){//so cot cua ma tran dinh[][] == so hang ma tran T
+			for(int k=0; k<3; k++){//so cot cua ma tran T
+				Pnew[i][j] += round(dinh[i][k]*T[k][j]);//toa do cac dinh cua hinh chop la so nguyen
 			}
 		}
 	}
-	//in ket qua cua ma tran Pnew
-	printf("\nMa tran Pnew: \n");
-	for(int i=0; i<3; i++){
-		for(int j=0; j<n;j++){
-			printf("%.2f  ",round(Pnew[i][j]));
-		}
-		printf("\n");
-	}
-	//ve duong thang noi cac dinh X,Y cua Pnew
-	for(int i=0; i<n-1; i++){
+	//in ra toa do sau khi chieu
+	inmatran(Pnew,n,3);
+	//ve toa do cac dinh cua hinh chop sau khi chieu
+	for(int i=0;i<n-1;i++){
 		for(int j=i+1; j<n; j++){
-			if(mtk[i][j]==1){//2 dinh co moi lien he voi nhau
-				line(round(Pnew[i][0]), round(Pnew[i][1]), round(Pnew[j][0]), round(Pnew[j][1]));
+			if(mtk[i][j]==1){
+				line(Pnew[i][0], Pnew[i][1], Pnew[j][0], Pnew[j][1]);
 			}
 		}
 	}
 }
 
-
-
 int main(){
 	readfile();
 	initwindow(600,600);
-	for(int phi=0; phi <180; phi++){
-		chieuxien(0.5,phi);
+	char buf[32];
+	settextstyle(DEFAULT_FONT,HORIZ_DIR, 20);
+	for(int i=0; i<180; i++){
+		sprintf(buf,"%d",i);
+		outtextxy(0,0,buf);
+		chieuxien(0.5,i);
 		delay(100);
 		cleardevice();
 	}
