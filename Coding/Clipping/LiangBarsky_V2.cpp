@@ -1,336 +1,132 @@
+#include<winbgim.h> 
 #include<stdio.h>
-#include<graphics.h>
-#include<math.h>
 
-int xmin;
-int xmax;
-int ymin;
-int ymax;
+//khai bao bien
+int xwmin = 100;
+int xwmax = 300;
+int ywmin = 100;
+int ywmax = 300;
+int x0, y0, x1, y1;
 
-int xa;
-int ya;
-int xb;
-int yb;
+void khoitao(){
+	setcolor(15);
+	setlinestyle(1,1,2);
+	rectangle(xwmin,ywmax,xwmax,ywmin);
+}
 
-int dx;
-int dy;
-
-int p[4];
-int q[4];
-
-int X1;
-int Y1;
-int X2;
-int Y2;
-
-void nhapthongso()
-{
-	xmin=100;
-	xmax=400;
-	ymin=100;
-	ymax=400;
-	
-	printf("xA = ");scanf("%d",&xa);
-	printf("yA = ");scanf("%d",&ya);
-	printf("xB = ");scanf("%d",&xb);
-	printf("yB = ");scanf("%d",&yb);
-	
-	//duong cheo cat 2 diem
-	
-	//xa=60;
-	//ya=40;
-	//xb=110;
-	//yb=60;
-	
-	//xa=70;
-	//ya=90;
-	//xb=110;
-	//yb=60;
-	
-	//xa=70;
-	//ya=90;
-	//xb=30;
-	//yb=60;
-	
-	//xa=60;
-	//ya=40;
-	//xb=30;
-	//yb=60;
-	
-	//song song truc hoanh
-	
-	//xa=30;
-	//ya=60;
-	//xb=70;
-	//yb=60;
-	
-	//xa=70;
-	//ya=120;
-	//xb=70;
-	//yb=60;
-	
-	//tinh gia tri pk va qk
-	dx=xb-xa;
-	dy=yb-ya;
-	
-	p[0]=-dx;
-	p[1]=dx;
-	p[2]=-dy;
-	p[3]=dy;
-	
-	q[0]=xa-xmin;
-	q[1]=xmax-xa;
-	q[2]=ya-ymin;
-	q[3]=ymax-ya;
-	/*
-	printf("P[i] va Q[i] la:");
-	int i;
-	for(i=0;i<4;i++)
-	{
-		printf("\n%d \t",p[i]);
-		printf("\n%d \t",q[i]);
+void inmang(int a[]){
+	for(int i=0; i<4; i++){
+		printf("%5d",a[i]);
 	}
-	*/
-	initwindow(500,500);
-	
-	line(xmin,ymin,xmax,ymin);
-	line(xmax,ymin,xmax,ymax);
-	line(xmax,ymax,xmin,ymax);
-	line(xmin,ymax,xmin,ymin);
-	
-	setcolor(BLUE);
+}
+
+float min(float a, float b){
+	return (a<b)?a:b;
+}
+
+float max(float a, float b){
+	return (a>b)?a:b;
+}
+
+void LiangBasky(int xa, int ya, int xb, int yb){
+	setcolor(2);
 	line(xa,ya,xb,yb);
-}
-
-int check()
-{
-	if(xa<xmin &&  xb<xmin)
-	{
-		return 0;
-	}
-	else
-	{
-		if(xa>xmax && ya>ymax)
-		{
-			return 0;
-		}
-		else
-		{
-			if(ya<ymin && yb<ymin)
-			{
-				return 0;
-			}
-			else
-			{
-				if(ya>ymax && yb>ymax)
-				{
-					return 0;
-				}
-				else
-				{
-					return 1;
-				}
-			}	
+	//tinh pk
+	int pk[4]={-(xb-xa),(xb-xa),-(yb-ya),(yb-ya)};
+	//tinh qk
+	int qk[4]={(xa-xwmin),(xwmax-xa),(ya-ywmin),(ywmax-ya)};
+	//in mang pk,qk
+	printf("\npk[]:");inmang(pk);
+	printf("\nqk[]:");inmang(qk);
+	//Xet cac truong hop pk<0: tim t1
+	float t1=0;
+	for(int i=0;i<4;i++){
+		if(pk[i]<0){
+			//printf("\nt1=%f,q[%d]/p[%d]=%f",t1,i,i,(float)qk[i]/pk[i]);
+			t1 = max(t1,(float)qk[i]/pk[i]);
 		}
 	}
+	printf("\nt1 = %f",t1);
+	x0=xa+t1*(xb-xa);
+	y0=ya+t1*(yb-ya);
 	
-	
-}
-
-float MIN(float a, float b)
-{
-	float min;
-	float max;
-	
-	if(a<b)
-	{
-		min=a;
-	}
-	else
-	{
-		min=b;
-	}
-	return min;
-}
-
-float MAX(float a, float b)
-{
-	float max;
-	
-	if(a<b)
-	{
-		max=b;
-	}
-	else
-	{
-		max=a;
-	}
-	return max;
-}
-
-void Liang_Barsky()
-{
-	int i;
-	float t1;
-	float t2;
-	
-	t1=0.0;
-	t2=1.0;
-	
-	//printf("\nCheck = %d",check());
-	
-	if(check()!=0)
-	{
-		for(i=0;i<4;i++)
-		{
-			if(p[i]<0)//doi voi pk<0
-			{
-				t1=MAX(t1,(float)q[i]/p[i]);
-				//printf("\np[%d]=%d q[%d]= %d  %.2f",i,p[i],i,q[i],(float)q[i]/p[i]);
-			}
-			else //doi voi pk>0
-			{
-				t2=MIN(t2,(float)q[i]/p[i]);
-				//printf("\np[%d]=%d q[%d]= %d  %.2f",i,p[i],i,q[i],(float)q[i]/p[i]);
-			}
+	//Xet cac truong hop pk>0: tim t2
+	float t2=1;
+	for(int i=0;i<4;i++){
+		if(pk[i]>0){
+			t2 = min(t2,(float)qk[i]/pk[i]);
+			//printf("\nt2=%f,q[%d]/p[%d]=%f",t2,i,i,(float)qk[i]/pk[i]);
 		}
-		
-		printf("\nt1 = %f, t2 = %f",t1,t2);
-		//tim X va Y
-		if(dx!=0 && dy!=0)//co 2 giao diem
-		{
-			X1=round(xa+t1*dx);
-			Y1=round(ya+t1*dy);
-			X2=round(xa+t2*dx);
-			Y2=round(ya+t2*dy);
-			
-			printf("\n(X1 = %d, Y1 = %d, X2 = %d, Y2 = %d)",X1,Y1,X2,Y2);
-			
-			//kiem tra giao diem co thoa man nam trong cua so?
-			if(X1<xmin || X1 >xmax || Y1 < ymin || Y1 > ymax || X2<xmin || X2 >xmax || Y2 < ymin || Y2 > ymax)
-			{
-				X1=0;
-				Y1=0;
-				X2=0;
-				Y2=0;
-			}
-		}
-		//Co 1 giao diem
-		else
-		{
-			//duong thang song song truc x
-			if(dy==0)
-			{
-				//diem a nam trong cua so
-				if(xa>=xmin && xa<=xmax)
-				{
-					//diem b nam trong
-					if(xb>=xmin && xb<=xmax)
-					{
-						X1=xa;Y1=ya;X2=xb;Y2=yb;
-					}
-					//diem b nam ben trai diem a
-					if(xb<xmin)
-					{
-						X1=xa;Y1=ya;X2=xmin;Y2=ya;//Y2=yb
-					}
-					//diem b nam ben phai
-					if(xb>xmax)
-					{
-						X1=xa;Y1=ya;X2=xmax;Y2=ya;//Y2=yb
-					}
-				}
-				//diem b nam ben trong cua so
-				if(xb>=xmin && xb<=xmax)
-				{
-					//diem a nam trong
-					if(xa>=xmin && xa<=xmax)
-					{
-						X1=xb;Y1=yb;X2=xa;Y2=ya;
-					}
-					//diem a nam ben trai diem a
-					if(xa<xmin)
-					{
-						X1=xb;Y1=yb;X2=xmin;Y2=yb;//Y2=ya
-					}
-					//diem a nam ben phai
-					if(xa>xmax)
-					{
-						X1=xb;Y1=yb;X2=xmax;Y2=yb;//Y2=ya
-					}
-				}
-				//ca 2 diem deu nam ben ngoai
-				if((xa<xmin && xb>xmax) || (xa>xmax && xb<xmin))
-				{
-					X1=xmin;Y1=ya;X2=xmax;Y2=ya;
-				}
-				printf("\n(X1 = %d, Y1 = %d, X2 = %d, Y2 = %d)",X1,Y1,X2,Y2);
-			}
-			else
-			//dx==0 //nam song song voi truc tung
-			{
-				//diem a nam trong cua so
-				if(ya>=ymin && ya<=ymax)
-				{
-					//diem b nam trong
-					if(yb>=ymin && yb<=ymax)
-					{
-						X1=xa;Y1=ya;X2=xb;Y2=yb;
-					}
-					//diem b nam ben duoi diem a
-					if(yb<ymin)
-					{
-						X1=xa;Y1=ya;Y2=ymin;X2=xa;//X2=xb
-					}
-					//diem b nam ben tren diem a
-					if(yb>ymax)
-					{
-						X1=xa;Y1=ya;Y2=ymax;X2=xa;//X2=xb
-					}
-				}
-				//diem b nam ben trong cua so
-				if(yb>=ymin && yb<=ymax)
-				{
-					//diem a nam trong
-					if(ya>=ymin && ya<=ymax)
-					{
-						X1=xa;Y1=ya;X2=xb;Y2=yb;
-					}
-					//diem a nam ben duoi diem b
-					if(ya<ymin)
-					{
-						X1=xb;Y1=yb;Y2=ymin;X2=xa;//X2=xb
-					}
-					//diem a nam ben tren diem b
-					if(ya>ymax)
-					{
-						X1=xb;Y1=yb;Y2=ymax;X2=xa;//X2=xb
-					}
-				}
-				//ca 2 diem deu nam ben ngoai
-				if((ya<ymin && yb>ymax) || (ya>ymax && yb<ymin))
-				{
-					X1=xa;Y1=ymin;X2=xb;Y2=ymax;
-				}
-			}
-		}
-		
-		//ve 2 giao diem
-		setcolor(GREEN);
-		setlinestyle(1,0,1);
-		line(X1,Y1,X2,Y2);
-		
 	}
-	else
-	{
-		printf("\nKhong co giao diem");
+	printf("\nt2 = %f",t2);
+	x1=xa+t2*(xb-xa);
+	y1=ya+t2*(yb-ya);
+	
+	//xet gia tri cua x,y sau khi xen tia co nam trong cua so cat?
+	if(x0<xwmin || x0>xwmax || y0<ywmin || y0>ywmax || x1<xwmin || x1>xwmax || y1<ywmin || y1>ywmax){
+		//khong lam gi ca
+		printf("\nDoan thang nam ngoai cua so cat");
+	}
+	else{
+		//ve duong thang noi x0,y0,x1,y1
+		setcolor(4);
+		printf("\n(x0 = %d, y0 = %d),(x1 = %d, y1 = %d)",x0,y0,x1,y1);
+		line(x0,y0,x1,y1);
 	}
 }
 
+int main(){
+	initwindow(400,400);
+	khoitao();
+	//A trong + B ngoai
+	//LiangBasky(150,280,260,150);//AB nam trong
+	//LiangBasky(150,280,360,150);//A trong, B phai
+	//LiangBasky(150,140,150,450);//A trong, B tren
+	//LiangBasky(200,140,60,140);//A trong, B trai
+	//LiangBasky(200,140,200,70);//A trong, B duoi
 
-int main()
-{
-	nhapthongso();
-	Liang_Barsky();
-	getch();
+	//A ngoai + B trong
+	//LiangBasky(360,150,150,280);//B trong, A phai
+	//LiangBasky(150,450,150,140);//B trong, A tren
+	//LiangBasky(60,140,200,140);//B trong, A trai
+	//LiangBasky(200,70,200,140);//B trong, A duoi
+	
+	//A trai + B phai
+	//LiangBasky(70,200,350,200);//A trai, B phai
+	
+	//A tren + B duoi
+	//LiangBasky(200,40,200,360);//A tren, B duoi
+	
+	//A trai + B tren
+	//LiangBasky(70,200,240,400);//A trai, B tren
+	
+	//A trai + B duoi
+	//LiangBasky(70,200,240,35);//A trai, B duoi
+	
+	//A phai + B tren
+	//LiangBasky(370,200,140,320);//A phai, B tren
+	
+	//A phai + B duoi
+	//LiangBasky(370,200,160,400);//A phai, B duoi
+	
+	//A goc tren, trai + B ben trong
+	//LiangBasky(50,30,150,140);//B trong, A tren, trai
+	//LiangBasky(10,80,150,140);//B trong, A tren, trai
+	
+	//A goc duoi, trai + B ben trong
+	//LiangBasky(80,430,150,140);//B trong, A duoi, trai
+	//LiangBasky(10,430,150,140);//B trong, A duoi, trai
+	
+	//A goc tren, phai + B ben trong
+	//LiangBasky(450,30,200,170);//B trong, A tren, phai
+	//LiangBasky(330,10,200,170);//B trong, A tren, phai
+	
+	//A goc duoi, phai + B ben trong
+	//LiangBasky(450,430,200,170);//B trong, A duoi, phai
+	//LiangBasky(330,410,200,170);//B trong, A duoi, phai
+	
+	//A trai, B tren: ngoai cua so cat
+	LiangBasky(30,200,140,450);//A trai, B tren
+
+	getch();//press any key
 }
