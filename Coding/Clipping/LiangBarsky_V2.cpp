@@ -79,54 +79,55 @@ int main(){
 	initwindow(400,400);
 	khoitao();
 	//A trong + B ngoai
-	//LiangBasky(150,280,260,150);//AB nam trong
-	//LiangBasky(150,280,360,150);//A trong, B phai
-	//LiangBasky(150,140,150,450);//A trong, B tren
-	//LiangBasky(200,140,60,140);//A trong, B trai
-	//LiangBasky(200,140,200,70);//A trong, B duoi
+	//Cohen(150,280,260,150);//AB nam trong
+	
+	//Cohen(150,280,360,150);//A trong, B phai
+	//Cohen(150,140,150,450);//A trong, B tren
+	//Cohen(200,140,60,140);//A trong, B trai
+	//Cohen(200,140,200,70);//A trong, B duoi
 
 	//A ngoai + B trong
-	//LiangBasky(360,150,150,280);//B trong, A phai
-	//LiangBasky(150,450,150,140);//B trong, A tren
-	//LiangBasky(60,140,200,140);//B trong, A trai
-	//LiangBasky(200,70,200,140);//B trong, A duoi
+	//Cohen(360,150,150,280);//B trong, A phai
+	//Cohen(150,450,150,140);//B trong, A tren
+	//Cohen(60,140,200,140);//B trong, A trai
+	//Cohen(200,70,200,140);//B trong, A duoi
 	
 	//A trai + B phai
-	//LiangBasky(70,200,350,200);//A trai, B phai
+	//Cohen(70,200,350,200);//A trai, B phai
 	
 	//A tren + B duoi
-	//LiangBasky(200,40,200,360);//A tren, B duoi
+	//Cohen(200,40,200,360);//A tren, B duoi
 	
 	//A trai + B tren
-	//LiangBasky(70,200,240,400);//A trai, B tren
+	//Cohen(70,200,240,400);//A trai, B tren
 	
 	//A trai + B duoi
-	//LiangBasky(70,200,240,35);//A trai, B duoi
+	//Cohen(70,200,240,35);//A trai, B duoi
 	
 	//A phai + B tren
-	//LiangBasky(370,200,140,320);//A phai, B tren
+	//Cohen(370,200,140,320);//A phai, B tren
 	
 	//A phai + B duoi
-	//LiangBasky(370,200,160,400);//A phai, B duoi
+	//Cohen(370,200,140,35);//A phai, B duoi
 	
 	//A goc tren, trai + B ben trong
-	//LiangBasky(50,30,150,140);//B trong, A tren, trai
-	//LiangBasky(10,80,150,140);//B trong, A tren, trai
+	//Cohen(50,30,150,140);//B trong, A tren, trai
+	//Cohen(10,80,150,140);//B trong, A tren, trai
 	
 	//A goc duoi, trai + B ben trong
-	//LiangBasky(80,430,150,140);//B trong, A duoi, trai
-	//LiangBasky(10,430,150,140);//B trong, A duoi, trai
+	//Cohen(80,430,150,140);//B trong, A duoi, trai
+	//Cohen(10,430,150,140);//B trong, A duoi, trai
 	
 	//A goc tren, phai + B ben trong
-	//LiangBasky(450,30,200,170);//B trong, A tren, phai
-	//LiangBasky(330,10,200,170);//B trong, A tren, phai
+	//Cohen(450,30,200,170);//B trong, A tren, phai
+	//Cohen(330,10,200,170);//B trong, A tren, phai
 	
 	//A goc duoi, phai + B ben trong
-	//LiangBasky(450,430,200,170);//B trong, A duoi, phai
-	//LiangBasky(330,410,200,170);//B trong, A duoi, phai
+	//Cohen(450,430,200,170);//B trong, A duoi, phai
+	//Cohen(330,410,200,170);//B trong, A duoi, phai
 	
 	//A trai, B tren: ngoai cua so cat
-	LiangBasky(30,200,140,450);//A trai, B tren
+	Cohen(30,200,140,450);//A trai, B tren
 
 	getch();//press any key
 }
