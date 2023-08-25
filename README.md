@@ -1,4 +1,5 @@
-# ComputerGraphics
+# GUIDE TO INSTALL Graphics.h on WINDOWS
+
 ## Download necessary files
 ##### Link here: https://github.com/thinhdoanvu/ComputerGraphics/tree/master/Coding/library
 ## Setup
@@ -44,6 +45,9 @@
   		getch();
 	}
 
+# GUIDE TO INSTALL ON MAC OS
+## Download DOSBOX
+#### https://sourceforge.net/projects/dosbox/files/dosbox/0.74-3/DOSBox-0.74-3-3.dmg/download
 
 ## Note
 Palette Number  Three Colors
