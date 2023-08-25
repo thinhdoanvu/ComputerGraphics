@@ -112,8 +112,9 @@ Palette Number  Three Colors
 
 3 CYAN MAGENTA LIGHTGRAY
 
+-------------------------------------------------------
 Name   Value
-
+-------------------------------------------------------
 BLACK  0
 
 BLUE   1
