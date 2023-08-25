@@ -47,9 +47,12 @@
 
 # GUIDE TO INSTALL Graphics.h on MAC OS
 ## Make 2 folders: dosbox, tc
-For example: ~/Programs/
-		|-dosbox
-  		|-tc
+For example: 
+~/Programs/
+		
+  |-dosbox
+  		
+    |-tc
 
 ## Download DOSBOX
 #### https://sourceforge.net/projects/dosbox/files/dosbox/0.74-3/DOSBox-0.74-3-3.dmg/download
