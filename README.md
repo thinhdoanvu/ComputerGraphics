@@ -82,11 +82,14 @@ Run 2 these command on dosbox:
 6. Press Start install...
 7. Finish
 
-#### Run code example
+###### Run code example
 	#include <graphics.h>
-	#include <stdlib.h>
-	#include <stdio.h>
-	#include <conio.h>
+	
+ 	#include <stdlib.h>
+	
+ 	#include <stdio.h>
+	
+ 	#include <conio.h>
 
 	int main()
 	{
@@ -97,6 +100,7 @@ Run 2 these command on dosbox:
    		closegraph();
    		return 0;
 	}
+ 
 
 #### Press F2 to Save CPP file
 #### Press F9 to compile 
