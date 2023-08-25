@@ -46,12 +46,13 @@
 	}
 
 # GUIDE TO INSTALL Graphics.h on MAC OS
-## Make 2 folders: dosbox, tc
+## Make 3 folders: dosbox, tc
 For example: 
 
 	~/Programs/
 		
   		|-dosbox
+    			|-examples
   		
    		|-tc
 
@@ -73,7 +74,7 @@ Run 2 these command on dosbox:
 
 ##### Step 4. Install
 1. Run this command in order to move to C disk directly: 
-	C:
+	A:
 2. Type: install
 3. Press Enter to continue
 4. Choose Install TurboC on Hardisk Drive
@@ -88,18 +89,27 @@ Run 2 these command on dosbox:
 #include <conio.h>
 
 int main()
+
 {
+
    int gd = DETECT, gm;
+   
    initgraph(&gd, &gm, "C:\\TC\\BGI");
+   
    line(100, 100, 200, 200);
+   
    getch();
+   
    closegraph();
+   
    return 0;
 }
 
-#### Press F9 to compile and Ctrl+F9 to run EXE file
+#### Press F2 to Save CPP file
+#### Press F9 to compile 
+#### and Ctrl+F9 to run EXE file
 
-
+ON MAC Press fn key to OPEN Function Keys
 -------------------------------------------------------
 ## Note
 Palette Number  Three Colors
