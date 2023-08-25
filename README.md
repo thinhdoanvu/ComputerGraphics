@@ -46,7 +46,7 @@
 	}
 
 # GUIDE TO INSTALL Graphics.h on MAC OS
-## Make 3 folders: dosbox, tc
+## Make 2 folders: dosbox, tc
 For example: 
 
 	~/Programs/
