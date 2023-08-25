@@ -52,7 +52,6 @@ For example:
 	~/Programs/
 		
   		|-dosbox
-    			|-examples
   		
    		|-tc
 
@@ -73,7 +72,7 @@ Run 2 these command on dosbox:
 2. mount c: ~/Programs/dosbox
 
 ##### Step 4. Install
-1. Run this command in order to move to C disk directly: 
+1. Run this command in order to move to A disk directly: 
 	A:
 2. Type: install
 3. Press Enter to continue
@@ -81,6 +80,11 @@ Run 2 these command on dosbox:
 5. Keep defaults
 6. Press Start install...
 7. Finish
+
+##### Step 5. Move to C folder
+1. C:
+2. cd TC
+3. Run TC to OPEN Turbo C
 
 ###### Run code example
 	#include <graphics.h>
