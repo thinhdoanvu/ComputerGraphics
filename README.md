@@ -83,27 +83,20 @@ Run 2 these command on dosbox:
 7. Finish
 
 #### Run code example
-#include <graphics.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <conio.h>
+	#include <graphics.h>
+	#include <stdlib.h>
+	#include <stdio.h>
+	#include <conio.h>
 
-int main()
-
-{
-
-   int gd = DETECT, gm;
-   
-   initgraph(&gd, &gm, "C:\\TC\\BGI");
-   
-   line(100, 100, 200, 200);
-   
-   getch();
-   
-   closegraph();
-   
-   return 0;
-}
+	int main()
+	{
+   		int gd = DETECT, gm;
+   		initgraph(&gd, &gm, "C:\\TC\\BGI");
+		line(100, 100, 200, 200);
+   		getch();
+   		closegraph();
+   		return 0;
+	}
 
 #### Press F2 to Save CPP file
 #### Press F9 to compile 
