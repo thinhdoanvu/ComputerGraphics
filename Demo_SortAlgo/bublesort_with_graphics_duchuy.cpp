@@ -143,7 +143,7 @@ void pointcolor(struct toado diem, int flag){
 	outtextxy(diem.x-9, diem.y-14,itoa(diem.value, buffer, 10));
 }
 
-void sort(){
+void sort2(){
 	enable_mouse=0;//khong cho su dung chuot
 	for(int i=0; i<npoints; i++){
 		
@@ -185,6 +185,40 @@ void sort(){
 		}
 	}
 }
+
+void sort(){
+	for(int i=0; i<npoints-1; i++){
+		for(int k=i+1; k<npoints; k++){
+			//ve ra man hinh: day so (color=WHITE)
+			for(int j=0; j<npoints; j++){
+				pointcolor(td[j],0);
+			}
+			//ve ra man hinh 2 so dang duoc so sanh: color=RED
+			pointcolor(td[i],1);
+			pointcolor(td[k],1);
+			//doi cho 2 so tai vi tri i va k
+			if(td[i].value > td[k].value){
+				//ve lai 2 diem voi 2 mau color = GREEN
+				for(int j=0; j<npoints; j++){
+					pointcolor(td[i],2);
+					pointcolor(td[k],2);
+				}
+				//doi cho 2 so
+				int tam=td[i].value;
+				td[i].value=td[k].value;
+				td[k].value=tam;
+				delay(200);
+			}
+			//xoa man hinh va ve lai 2 so moi i - k
+			delay(300);
+			cleardevice();
+		}
+	}
+	//ve lai danh sach sau khi sap xep
+	vegiaodien();
+	veds(td,npoints);
+}
+
 
 void vegiaodien(){
 	setcolor(WHITE);
@@ -256,12 +290,6 @@ int main(){
 	
 	//goi ham chuot
 	mouse();
-	
-	//in ra toa do cac diem
-	//intoado(td,npoints);
-	
-	//sap xep
-	//sort();
 	
 	//ket thuc
 	getch();
