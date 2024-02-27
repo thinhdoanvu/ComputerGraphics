@@ -12,8 +12,8 @@
 
 ##### Step 2.
 ###### Copy:
-	graphics
-	winbgim
+	graphics.h
+	winbgim.h
 ###### Paste:
 	C:\Program Files\Dev-Cpp\MinGW64\x86_64-w64-mingw32\include
   
