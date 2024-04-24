@@ -280,12 +280,12 @@ void cohen_sutherland(int dinh_t, int dinh_s){
 	for(int i=0; i<dem-1; i++){
 		printf("(%d,%d) <-> (%d,%d)\n",res[i].x,res[i].y,res[i+1].x,res[i+1].y);
 	}
-//	//loai bo cac diem co toa do nam ngoai gioi han min max
-//	for(int i=0; i<dem; i++){
-//		if(res[i].x < xmin || res[i].x >xmax || res[i].y <ymin || res[i].y >ymax){
-//			
-//		}
-//	}
+	//loai bo cac diem co toa do nam ngoai gioi han min max
+	for(int i=0; i<dem; i++){
+		if(res[i].x < xmin || res[i].x >xmax || res[i].y <ymin || res[i].y >ymax){
+			
+		}
+	}
 	//ve doan thang noi 2 giao diem
 	setlinestyle(1,1,2);
 	setcolor(4);
