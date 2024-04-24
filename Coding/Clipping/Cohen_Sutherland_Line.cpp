@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<limits.h>
 #define maxdinh 20//so dinh toi da cua da giac
-#define INPUT "input.in"
+#define INPUT "input.line"
 
 
 //khai bao prototype
