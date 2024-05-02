@@ -1,27 +1,72 @@
 2
-250 150
-250 450
-//2 dinh tren, duoi dx=0
+100 150
+450 480
+//2 diem ben tren, trai -> duoi, phai
 
 2
-450 250
-150 300
-//2 dinh phai -> trai csc
+250 450
+450 150
+//2 diem ben duoi -> tren, phai
+
+2
+450 150
+250 450
+//2 diem ben tren, phai -> duoi
+
+2
+250 150
+450 450
+//2 diem ben tren -> duoi, phai
+
+2
+250 150
+450 450
+//2 diem ben tren -> duoi, phai
+
+2
+250 150
+150 450
+//2 diem ben tren -> duoi + trai
+
+2
+150 450
+250 150
+//2 diem ben duoi + trai -> tren
+
+2
+10 10
+450 220
+//2 diem ben ngoai csc
+
+2
+150 150
+450 150
+//2 diem ben ngoai csc
 
 2
 250 250
-350 350
-//2 dinh ben trong
+250 450
+//trong + ngoai
+
+2
+250 150
+250 450
+//2 dinh trai, phai == dx
 
 2
 150 250
 450 250
-//2 dinh trai -> phai dy=0
+//2 dinh trai, phai == dy
 
 2
-150 10
-450 220
-//2 dinh ben ngoai
+350 450
+150 150
+//2 diem duoi -> tren, trai
+
+2
+150 150
+350 450
+//2 diem tren, trai -> duoi
 
 2
 150 150
@@ -29,9 +74,14 @@
 //2 diem tren, trai -> phai
 
 2
-10 10
-450 220
-//2 diem ben ngoai csc
+250 450
+350 150
+//2 dinh duoi -> tren
+
+2
+350 150
+250 450
+//2 dinh tren -> duoi
 
 2
 450 250
@@ -44,15 +94,8 @@
 //2 dinh trai -> phai csc
 
 2
-10 10
-450 220
-//2 diem ben ngoai csc
+250 250
+350 350
+//2 dinh ben trong
 
-
-
-
-
-
-
-
-
+//Using for Cohen Sutherland Algorithm Line Clipping
