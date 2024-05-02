@@ -4,6 +4,16 @@
 //2 diem ben tren, trai -> duoi, phai
 
 2
+10 10
+450 220
+//2 diem ben ngoai csc
+
+2
+250 250
+250 450
+//trong + ngoai
+
+2
 250 450
 450 150
 //2 diem ben duoi -> tren, phai
@@ -33,20 +43,11 @@
 250 150
 //2 diem ben duoi + trai -> tren
 
-2
-10 10
-450 220
-//2 diem ben ngoai csc
 
 2
 150 150
 450 150
 //2 diem ben ngoai csc
-
-2
-250 250
-250 450
-//trong + ngoai
 
 2
 250 150
@@ -98,4 +99,3 @@
 350 350
 //2 dinh ben trong
 
-//Using for Cohen Sutherland Algorithm Line Clipping
