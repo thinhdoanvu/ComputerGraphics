@@ -1,0 +1,58 @@
+2
+250 150
+250 450
+//2 dinh tren, duoi dx=0
+
+2
+450 250
+150 300
+//2 dinh phai -> trai csc
+
+2
+250 250
+350 350
+//2 dinh ben trong
+
+2
+150 250
+450 250
+//2 dinh trai -> phai dy=0
+
+2
+150 10
+450 220
+//2 dinh ben ngoai
+
+2
+150 150
+450 220
+//2 diem tren, trai -> phai
+
+2
+10 10
+450 220
+//2 diem ben ngoai csc
+
+2
+450 250
+150 300
+//2 dinh phai -> trai csc
+
+2
+150 300
+450 250
+//2 dinh trai -> phai csc
+
+2
+10 10
+450 220
+//2 diem ben ngoai csc
+
+
+
+
+
+
+
+
+
