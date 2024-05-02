@@ -1,6 +1,6 @@
 #include<graphics.h>
 #include<stdio.h>
-#define INPUT "input.poly"
+#define INPUT "input.line"
 #define MAXDINH	20
 //khai bao prototype
 void readfile();
@@ -100,7 +100,7 @@ void Liangbasky(struct point p1, struct point p2){
 	
 	//tim giao diem 2:
 	for(int i=0; i<4; i++){
-		if(p[i]>0){
+		if(p[i]>=0){
 			t2=min(t2,(float)q[i]/p[i]);
 		}
 	}
@@ -112,10 +112,16 @@ void Liangbasky(struct point p1, struct point p2){
 	for(int i=0; i<2-1; i++){
 		printf("(%d, %d) - (%d,%d)",res[0].x, res[0].y, res[1].x, res[1].y);
 	}
+	
 	//ve doan thang noi 2 giao diem
 	setlinestyle(1,1,2);
 	setcolor(4);
-	line(res[0].x, res[0].y, res[1].x, res[1].y);
+	//them dieu kien loai tru giao diem nam ben ngoai cua so cat
+	for(int i=0; i<2-1; i++){
+		if(res[i].x >=xmin && res[i].x <=xmax && res[i].y >=ymin && res[i].y <= ymax){
+			line(res[i].x, res[i].y, res[i+1].x, res[i+1].y);
+		}
+	}
 }
 
 //chuong trinh chinh
@@ -140,4 +146,3 @@ int main(){
 	getch();
 	return 0;
 }
-
