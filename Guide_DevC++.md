@@ -31,7 +31,7 @@ Open DevC - New Project - Console Graphics Application
 	Save in some where
 ```
 Tools - Compiler Option:   
-``
+```
   TDM-GCC 4.9.2 32bit Release
 ```
 Code:
