@@ -1,30 +1,41 @@
-Copy:
+Copy:  
+```
 	6-ConsoleAppGraphics
 	ConsoleApp_cpp_graph
-Paste:
+```
+Paste:  
+```
 	C:\Program Files\Dev-Cpp\Templates
-	
-Copy:
+```
+Copy:  
+```
 	graphics
 	winbgim
-Paste:
+```
+Paste:  
+```
 	C:\Program Files\Dev-Cpp\MinGW64\x86_64-w64-mingw32\include
-	
-Copy:
+```	
+Copy:  
+```
 	libbgi.a
-Paste:
+```
+Paste:  
+```
 	C:\Program Files\Dev-Cpp\MinGW64\x86_64-w64-mingw32\lib
-	
-Open DevC - New Project - Console Graphics Application
+```	
+Open DevC - New Project - Console Graphics Application   
+```
 	C++ File
 	Project name: Hello
 	Save in some where
-
-Tools - Compiler Option:
+```
+Tools - Compiler Option:   
+``
   TDM-GCC 4.9.2 32bit Release
-  
-  
+```
 Code:
+```
 #include <graphics.h>
 
 int main()
@@ -33,4 +44,4 @@ int main()
   line(100,100,400,400);
   getch();
 }
-
+```
