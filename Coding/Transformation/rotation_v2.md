@@ -83,5 +83,9 @@ int main(){
 	return 0;  
 }  
 '''
+
 ![image](https://github.com/user-attachments/assets/dfebc2df-2284-422e-8433-1d203a747cc3)
+
+![image](https://github.com/user-attachments/assets/c771e71b-05ee-4c04-b17e-830906b9912f)
+
 
