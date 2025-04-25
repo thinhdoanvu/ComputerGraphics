@@ -9,6 +9,7 @@
 280 350
 ```
 ## Code
+```
 #include<stdio.h>
 #include<graphics.h>
 #include<limits.h>
@@ -294,3 +295,4 @@ int main(){
 	xentia();
 	getch();
 }
+```
